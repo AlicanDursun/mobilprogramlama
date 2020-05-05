@@ -45,11 +45,13 @@ class _UpdateState extends State<Update> {
       ),
       body: Form(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             kullaniciAlani(),
             sifreAlani(),
             Padding(
-              padding: EdgeInsets.only(top: 40),
+              padding: EdgeInsets.only(left: 50.0, right: 50.0),
               child: MaterialButton(
                 onPressed: () {
                   Kullanicilar kullanici = Kullanicilar(
@@ -60,7 +62,7 @@ class _UpdateState extends State<Update> {
                       MaterialPageRoute(builder: (context) => Select()));
                 },
                 child: Text(
-                  'Update',
+                  'Güncelle',
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -85,7 +87,7 @@ class _UpdateState extends State<Update> {
 
   Widget kullaniciAlani() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: TextFormField(
         // validator: validateKullaniciAdi,
         controller: _kullaniciKontrol,
@@ -111,27 +113,30 @@ class _UpdateState extends State<Update> {
   }
 
   Widget sifreAlani() {
-    return TextFormField(
-      //validator: validateSifre,
-      controller: _sifreKontrol,
-      cursorColor: Color(0xFF333333),
-      obscureText: false,
-      style: TextStyle(
-        color: Colors.grey,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+          child: TextFormField(
+        //validator: validateSifre,
+        controller: _sifreKontrol,
+        cursorColor: Color(0xFF333333),
+        obscureText: false,
+        style: TextStyle(
+          color: Colors.grey,
+        ),
+        decoration: InputDecoration(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0xFF57B846),
+              ),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey,
+              ),
+            ),
+            labelText: 'Şifre',
+            labelStyle: TextStyle(fontSize: 15, color: Colors.grey)),
       ),
-      decoration: InputDecoration(
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xFF57B846),
-            ),
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
-          ),
-          labelText: 'Şifre',
-          labelStyle: TextStyle(fontSize: 15, color: Colors.grey)),
     );
   }
 }

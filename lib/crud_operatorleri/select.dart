@@ -41,7 +41,10 @@ class _SelectState extends State<Select> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Node js Android Bağlantısı"),
+        title: Text(
+          "Kullanıcıları Görüntüleme Ekranı",
+          style: TextStyle(fontSize: 15),
+        ),
       ),
       body: SafeArea(
         child: FutureBuilder(
@@ -83,46 +86,58 @@ class _SelectState extends State<Select> {
                     CircleAvatar(
                       child: Text(kullanici.id.toString()),
                     ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
                     Text(
                       "Kullanici Adi :  ${kullanici.kullaniciAdi}",
                     ),
                     Text("Şifre : ${kullanici.sifre}"),
+                    SizedBox(height: 10.0,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Dikkat"),
-                                    content: Text(
-                                        "Silmek istediğinize emin misiniz ${kullanici.kullaniciAdi}"),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text("Evet"),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          kullaniciSil(kullanici.id);
-                                          setState(() {});
-                                        },
-                                      ),
-                                      FlatButton(
+                        OutlineButton.icon(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Dikkat",style: TextStyle(color:Colors.red),),
+                                      content: Text(
+                                          "Silmek istediğinize emin misiniz ${kullanici.kullaniciAdi}"),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text("Evet"),
                                           onPressed: () {
                                             Navigator.pop(context);
+                                            kullaniciSil(kullanici.id);
+                                            setState(() {});
                                           },
-                                          child: Text("Hayır"))
-                                    ],
-                                  );
-                                });
-                          },
-                          child: Text(
-                            "Sil",
-                            style: TextStyle(color: Colors.red),
-                          ),
+                                        ),
+                                        FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("Hayır"))
+                                      ],
+                                    );
+                                  });
+                            },
+                            icon: Icon(
+                              Icons.group_add,
+                              color: Colors.green,
+                            ),
+                            label: Text("Sil")),
+                        SizedBox(
+                          width: 10.0,
                         ),
-                        FlatButton(
+                        OutlineButton.icon(
+                          label: Text("Düzenle"),
+                          icon: Icon(
+                            Icons.hd,
+                            color: Colors.green,
+                          ),
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -131,7 +146,6 @@ class _SelectState extends State<Select> {
                                           kullanici: kullanici,
                                         )));
                           },
-                          child: Text("Düzenle"),
                         )
                       ],
                     )
@@ -146,4 +160,3 @@ class _SelectState extends State<Select> {
     );
   }
 }
-

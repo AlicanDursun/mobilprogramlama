@@ -14,22 +14,28 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Center(
-            child: RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Select()));
-              },
-              child: Text("Kullanıcıları görüntüle"),
-            ),
+            child: OutlineButton.icon(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Select()));
+                },
+                icon: Icon(
+                  Icons.adb,
+                  color: Colors.green,
+                ),
+                label: Text("Kullanıcıları göster")),
           ),
           Center(
-            child: RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Insert()));
-              },
-              child: Text("Yeni Kullanıcı Ekleme İşlemi"),
-            ),
+            child: OutlineButton.icon(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Insert()));
+                },
+                icon: Icon(
+                  Icons.group_add,
+                  color: Colors.green,
+                ),
+                label: Text("Kullanıcıları göster")),
           ),
         ],
       ),

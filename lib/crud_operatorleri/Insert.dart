@@ -33,21 +33,22 @@ class _InsertState extends State<Insert> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("İNSERT İŞLEMİ"),
+        title: Text("Yeni Kullanıcı Ekleme Ekranı"),
       ),
       body: Form(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             kullaniciAlani(),
             sifreAlani(),
             Padding(
-              padding: EdgeInsets.only(top: 40),
+              padding: EdgeInsets.only(left: 50.0, right: 50.0),
               child: MaterialButton(
                 onPressed: () {
-                  String adi = _kullaniciKontrol.text.toString();
-                  String sifre = _sifreKontrol.text.toString();
-                  Kullanicilar kullanici =
-                      Kullanicilar(kullaniciAdi: adi, sifre: sifre);
+                  Kullanicilar kullanici = Kullanicilar(
+                      kullaniciAdi: _kullaniciKontrol.text,
+                      sifre: _sifreKontrol.text);
                   yeniKullanici(kullanici);
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => Select()));
@@ -78,7 +79,7 @@ class _InsertState extends State<Insert> {
 
   Widget kullaniciAlani() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: TextFormField(
         // validator: validateKullaniciAdi,
         controller: _kullaniciKontrol,
@@ -104,27 +105,30 @@ class _InsertState extends State<Insert> {
   }
 
   Widget sifreAlani() {
-    return TextFormField(
-      //validator: validateSifre,
-      controller: _sifreKontrol,
-      cursorColor: Color(0xFF333333),
-      obscureText: true,
-      style: TextStyle(
-        color: Colors.grey,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+          child: TextFormField(
+        //validator: validateSifre,
+        controller: _sifreKontrol,
+        cursorColor: Color(0xFF333333),
+        obscureText: true,
+        style: TextStyle(
+          color: Colors.grey,
+        ),
+        decoration: InputDecoration(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0xFF57B846),
+              ),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey,
+              ),
+            ),
+            labelText: 'Şifre',
+            labelStyle: TextStyle(fontSize: 15, color: Colors.grey)),
       ),
-      decoration: InputDecoration(
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xFF57B846),
-            ),
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
-          ),
-          labelText: 'Şifre',
-          labelStyle: TextStyle(fontSize: 15, color: Colors.grey)),
     );
   }
 }
